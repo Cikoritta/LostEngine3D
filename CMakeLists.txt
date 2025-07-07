@@ -2,33 +2,38 @@
 
 project(LostEngine)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-add_library(glad STATIC libs/glad/src/glad.c)
-target_include_directories(glad PUBLIC libs/glad/include)
+set(LIB_PATH "${CMAKE_SOURCE_DIR}/libs")
 
 
-add_subdirectory(libs/glfw)
+add_library(glad STATIC ${LIB_PATH}/glad/src/glad.c)
+target_include_directories(glad PUBLIC ${LIB_PATH}/glad/include)
 
-add_subdirectory(libs/glm)
+
+add_subdirectory(${LIB_PATH}/glfw)
+
+
+add_subdirectory(${LIB_PATH}/glm/glm)
 
 set(GLI_BUILD_TESTS OFF CACHE INTERNAL "Disable gli tests")
 set(GLI_BUILD_DUMMY OFF CACHE INTERNAL "Disable gli dummy")
-add_subdirectory(libs/gli)
+add_subdirectory(${LIB_PATH}/gli)
 
 
-file(GLOB_RECURSE CPP_FILES "LostEngine/*.cpp")
-file(GLOB_RECURSE HPP_FILES "LostEngine/*.hpp")
+file(GLOB_RECURSE CPP_FILES "src/*.cpp")
 
-add_executable(LostEngine ${CPP_FILES} ${HPP_FILES})
+add_executable(LostEngine ${CPP_FILES})
 
 
 target_include_directories(LostEngine PRIVATE
-    libs/glad/include
-    libs/entt/single_include
+    ${LIB_PATH}/glad/include
+    ${LIB_PATH}/entt/single_include
+    ${LIB_PATH}/glm
+    ${LIB_PATH}/simpleini
     LostEngine
 )
 
