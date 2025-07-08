@@ -1,10 +1,17 @@
 #pragma once
 #include "../../Engine/Scene/Scene.hpp"
+#include "../../Engine/Texture/Texture.hpp"
+#include "../../Engine/Shader/Shader.hpp"
+#include "../../Engine/Mesh/Mesh.hpp"
 
 
 class TestScene : public le::Scene
 {
+	le::Texture2D texture;
 
+	le::Shader shader;
+
+	le::Mesh mesh;
 
 public:
 

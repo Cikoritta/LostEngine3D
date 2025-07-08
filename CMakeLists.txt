@@ -19,14 +19,20 @@ add_subdirectory(${LIB_PATH}/glfw)
 
 add_subdirectory(${LIB_PATH}/glm/glm)
 
-set(GLI_BUILD_TESTS OFF CACHE INTERNAL "Disable gli tests")
-set(GLI_BUILD_DUMMY OFF CACHE INTERNAL "Disable gli dummy")
-add_subdirectory(${LIB_PATH}/gli)
-
 
 file(GLOB_RECURSE CPP_FILES "src/*.cpp")
 
 add_executable(LostEngine ${CPP_FILES})
+
+
+set(RESOURCE_SOURCE_DIR "${CMAKE_SOURCE_DIR}/res")
+set(RESOURCE_TARGET_DIR "${CMAKE_BINARY_DIR}")
+
+add_custom_command(TARGET LostEngine POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${RESOURCE_SOURCE_DIR}"
+        "${RESOURCE_TARGET_DIR}"
+)
 
 
 target_include_directories(LostEngine PRIVATE
@@ -34,6 +40,7 @@ target_include_directories(LostEngine PRIVATE
     ${LIB_PATH}/entt/single_include
     ${LIB_PATH}/glm
     ${LIB_PATH}/simpleini
+    ${LIB_PATH}/stb-master
     LostEngine
 )
 
@@ -42,5 +49,4 @@ target_link_libraries(LostEngine
     glad
     glfw
     glm
-    gli
 )

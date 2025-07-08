@@ -92,6 +92,8 @@ void le::Window::create(const Mode mode, const glm::uvec2& size, const std::stri
 
 	glfwSetWindowSizeCallback(m_window, resizeCallback);
 
+	glEnable(GL_DEPTH_TEST);
+
 
 	glm::uvec2 windowSize = getSize();
 

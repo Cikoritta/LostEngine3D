@@ -6,6 +6,10 @@
 
 #include "OpenGL/OpenGL.hpp"
 
+
+using uint = std::uint32_t;
+
+
 namespace le
 {
 	constexpr std::string_view	GAME_NAME = "Pokemon Age of Dragons";
