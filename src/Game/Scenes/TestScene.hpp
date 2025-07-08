@@ -3,6 +3,7 @@
 #include "../../Engine/Texture/Texture.hpp"
 #include "../../Engine/Shader/Shader.hpp"
 #include "../../Engine/Mesh/Mesh.hpp"
+#include "../../Engine/Camera/Camera.hpp"
 
 
 class TestScene : public le::Scene
@@ -12,6 +13,8 @@ class TestScene : public le::Scene
 	le::Shader shader;
 
 	le::Mesh mesh;
+
+	le::Camera camera;
 
 public:
 

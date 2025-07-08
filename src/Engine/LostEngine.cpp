@@ -3,6 +3,7 @@
 #include "Debug/Debug.hpp"
 #include "Events/Events.hpp"
 #include "IniParser/IniParser.hpp"
+#include "Input/Input.hpp"
 
 #include "../Game/Scenes/TestScene.hpp"
 
@@ -19,6 +20,9 @@ void le::LostEngine::InitEngine()
 
 
 	m_window.create(static_cast<le::Window::Mode>(INI_GET(int, GLOBAL_CONFIG_PATH.data(), "Display.mode")), INI_GET(glm::ivec2, GLOBAL_CONFIG_PATH.data(), "Display.windowSize"));
+
+
+	Input::init(m_window);
 
 
 	m_sceneManager.addScene("TestScene", [&]() -> std::shared_ptr<le::Scene>

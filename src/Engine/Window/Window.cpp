@@ -26,6 +26,11 @@ le::Window::~Window()
 	}
 }
 
+GLFWwindow* le::Window::getGLFWWindow() const
+{
+	return m_window;
+}
+
 
 void le::Window::create(const Mode mode, const glm::uvec2& size, const std::string_view& title)
 {
@@ -171,15 +176,12 @@ void le::Window::setPosition(const glm::ivec2& position) const
 }
 
 
-glm::vec2 le::Window::getAspectRatio() const
+float le::Window::getAspectRatio() const
 {
 	glm::uvec2 windowSize = getSize();
 
-	glm::uvec2 monitorSize = getMonitorSize();
 
-
-	return { static_cast<float>(windowSize.x) / static_cast<float>(monitorSize.x),
-			static_cast<float>(windowSize.y) / static_cast<float>(monitorSize.y) };
+	return { static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y) };
 }
 
 

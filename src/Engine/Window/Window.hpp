@@ -35,6 +35,9 @@ namespace le
 		~Window();
 
 
+		GLFWwindow* getGLFWWindow() const;
+
+
 		void create(const Mode mode, const glm::uvec2& size = DEFAULT_WINDOW_SIZE, const std::string_view& title = GAME_NAME);
 
 		bool isOpen() const;
@@ -61,7 +64,7 @@ namespace le
 		void setPosition(const glm::ivec2& position) const;
 
 
-		glm::vec2 getAspectRatio() const;
+		float getAspectRatio() const;
 
 
 		void clear() const;
